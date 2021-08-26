@@ -5,7 +5,14 @@ Widget buildRow(String text, IconData icon) {
     padding: const EdgeInsets.symmetric(vertical: 2),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [Icon(icon), const SizedBox(width: 10), Text(text)],
+      children: [
+        Icon(icon, size: 15),
+        const SizedBox(width: 10),
+        Text(
+          text,
+          style: TextStyle(fontSize: 12),
+        )
+      ],
     ),
   );
 }

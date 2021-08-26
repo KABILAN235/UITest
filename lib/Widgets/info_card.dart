@@ -21,11 +21,11 @@ class InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
-      height: 170,
+      height: 120,
       width: double.infinity,
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
               offset: const Offset(3, 3),
@@ -41,8 +41,8 @@ class InfoCard extends StatelessWidget {
                 height: 170,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      bottomLeft: Radius.circular(20)),
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10)),
                   child: Image.asset(
                     "assets/image.jpeg",
                     fit: BoxFit.cover,
@@ -57,11 +57,11 @@ class InfoCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   PostedTime(time: time),
-                  const Spacer(flex: 1),
+                  const Spacer(),
                   buildRow("$likes Likes", Icons.favorite_border_outlined),
                   buildRow("$comments Comments", Icons.chat),
                   buildRow("$engagement% Average Engagement", Icons.person),
-                  const Spacer(flex: 4)
+                  const Spacer()
                 ],
               ),
             ),

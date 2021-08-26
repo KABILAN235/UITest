@@ -11,32 +11,37 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Best Post Times",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            Expanded(
-              child: ListView.separated(
-                  itemBuilder: (ctx, i) {
-                    return const InfoCard(
-                      comments: 22,
-                      engagement: 3.4,
-                      likes: 384,
-                      time: "Sunday at 12PM",
-                    );
-                  },
-                  separatorBuilder: (ctx, i) {
-                    return SizedBox(height: 20);
-                  },
-                  itemCount: 4),
-            ),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: const Text(
+                  "Best Post Times",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Expanded(
+                child: ListView.separated(
+                    itemBuilder: (ctx, i) {
+                      return const InfoCard(
+                        comments: 22,
+                        engagement: 3.4,
+                        likes: 384,
+                        time: "Sunday at 12PM",
+                      );
+                    },
+                    separatorBuilder: (ctx, i) {
+                      return SizedBox(height: 20);
+                    },
+                    itemCount: 4),
+              ),
+            ],
+          ),
         ),
       ),
     );

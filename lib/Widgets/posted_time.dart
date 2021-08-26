@@ -20,12 +20,12 @@ class PostedTime extends StatelessWidget {
           const Icon(
             Icons.timer,
             color: Colors.purple,
-            size: 14,
+            size: 12,
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: 5),
           Text(
             "Posted $time",
-            style: const TextStyle(color: Colors.purple, fontSize: 12),
+            style: const TextStyle(color: Colors.purple, fontSize: 10),
           ),
         ],
       ),
