@@ -10,7 +10,6 @@ class PostedTime extends StatelessWidget {
     return Container(
       // height: 40,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      // width: double.infinity,
       decoration: BoxDecoration(
           color: Colors.purple.withOpacity(0.3),
           borderRadius: BorderRadius.circular(10)),

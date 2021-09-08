@@ -5,6 +5,7 @@ import 'posted_time.dart';
 
 class InfoCard extends StatelessWidget {
   final String time;
+  final String imgURL;
   final int likes;
   final int comments;
   final double engagement;
@@ -14,7 +15,8 @@ class InfoCard extends StatelessWidget {
       required this.time,
       required this.likes,
       required this.comments,
-      required this.engagement})
+      required this.engagement,
+      required this.imgURL})
       : super(key: key);
 
   @override
@@ -43,8 +45,8 @@ class InfoCard extends StatelessWidget {
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(10),
                       bottomLeft: Radius.circular(10)),
-                  child: Image.asset(
-                    "assets/image.jpeg",
+                  child: Image.network(
+                    imgURL,
                     fit: BoxFit.cover,
                   ),
                 ),

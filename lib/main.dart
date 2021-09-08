@@ -1,8 +1,15 @@
-import 'package:demo/Widgets/info_card.dart';
+import 'package:demo/core/services/HTTPService.dart';
+import 'package:demo/ui/Widgets/info_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'core/bloc/data_bloc.dart';
 
 void main() {
-  runApp(const MaterialApp(home: MyApp()));
+  runApp(BlocProvider(
+    create: (context) => DataBloc(HTTPFakeService())..add(GetInitialData()),
+    child: MaterialApp(home: MyApp()),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,20 +32,35 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              Expanded(
-                child: ListView.separated(
-                    itemBuilder: (ctx, i) {
-                      return const InfoCard(
-                        comments: 22,
-                        engagement: 3.4,
-                        likes: 384,
-                        time: "Sunday at 12PM",
-                      );
-                    },
-                    separatorBuilder: (ctx, i) {
-                      return SizedBox(height: 20);
-                    },
-                    itemCount: 4),
+              BlocBuilder<DataBloc, DataState>(
+                builder: (context, state) {
+                  if (state is FetchedData) {
+                    return Expanded(
+                      child: ListView.separated(
+                          itemBuilder: (ctx, index) {
+                            final data = state.data[index];
+                            return InfoCard(
+                              imgURL: data.photoURL,
+                              comments: data.comments,
+                              engagement: data.engagement,
+                              likes: data.likes,
+                              time:
+                                  "${data.postedTime.weekday} at ${data.postedTime.hour}",
+                            );
+                          },
+                          separatorBuilder: (ctx, i) {
+                            return SizedBox(height: 20);
+                          },
+                          itemCount: state.data.length),
+                    );
+                  } else if (state is DataError) {
+                    return Center(
+                      child: Text("Error Loading the Data"),
+                    );
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
               ),
             ],
           ),
